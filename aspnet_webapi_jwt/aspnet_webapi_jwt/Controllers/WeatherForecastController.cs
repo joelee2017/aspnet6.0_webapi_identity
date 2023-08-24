@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using aspnet_webapi_jwt.Extension;
 
 namespace aspnet_webapi_jwt.Controllers
 {
@@ -26,7 +27,8 @@ namespace aspnet_webapi_jwt.Controllers
             _jwtHelpers = jwtHelpers;
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
+        
+        [HttpGet(Name = "GetWeatherForecast"), AllowAnonymous]
         public IEnumerable<WeatherForecast> Get()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
@@ -71,7 +73,7 @@ namespace aspnet_webapi_jwt.Controllers
             var token = _jwtHelpers.GenerateToken(username);
             return Ok(token);
         }
-        [HttpGet("username"), Authorize(Roles = "admin")]
+        [HttpGet("username"), Microsoft.AspNetCore.Authorization.Authorize(Roles = "admin")]
         public ActionResult<string> Username()
         {
             return Ok(User.Identity?.Name);

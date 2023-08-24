@@ -1,0 +1,106 @@
+{
+	"info": {
+		"_postman_id": "dd0fa5ef-01fb-4cd9-b962-2fd3d5ade5d7",
+		"name": "JWT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "WeatherForecast/Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Bearer",
+						"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6ImFkbWluIiwianRpIjoiNWEyN2I4MmUtZjViZi00NjQyLWFmOGYtYjFiZGUyYTQwNTY2IiwiaXNzIjoiSnd0QXV0aERlbW8iLCJzdWIiOiIxMjMiLCJleHAiOjE2OTIzNDQ1NDQsIm5iZiI6MTY5MjMzNzM0NCwiaWF0IjoxNjkyMzM3MzQ0LCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMTIzIn0.FxG77SiNhU3i0ewZQ72mTH7NOh6H6PehpUKJNsITzOg",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7012/WeatherForecast/Login?username=123&password=123",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7012",
+					"path": [
+						"WeatherForecast",
+						"Login"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "123"
+						},
+						{
+							"key": "password",
+							"value": "123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WeatherForecast/username",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6ImFkbWluIiwianRpIjoiNTJiNzQwYjEtYTFkMi00ZWJiLTllMTQtNjQzM2M1NWRjMThhIiwiaXNzIjoiVGVzdDEyMzQiLCJzdWIiOiIxMjMiLCJleHAiOjE2OTI3NjI2MTIsIm5iZiI6MTY5Mjc1NTQxMiwiaWF0IjoxNjkyNzU1NDEyLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMTIzIn0._cdOarky2fT_NuCyGiwrlO1TETL-ukaMaXYKfIsJySQ"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "https://localhost:7012/WeatherForecast/username"
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:7012/WeatherForecast/Login2?username=123&password=123",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7012/WeatherForecast/Login2?username=123&password=123",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7012",
+					"path": [
+						"WeatherForecast",
+						"Login2"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "123"
+						},
+						{
+							"key": "password",
+							"value": "123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WeatherForecast/GetWeatherForecast",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6ImFkbWluIiwianRpIjoiYmY0ZGY2N2UtM2MyNS00MDg0LWE2OTMtNTViMzQ1ZGQ0Y2QwIiwiaXNzIjoiVGVzdDEyMzQiLCJzdWIiOiIxMjMiLCJleHAiOjE2OTI4NDgxNTQsIm5iZiI6MTY5Mjg0MDk1NCwiaWF0IjoxNjkyODQwOTU0LCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiMTIzIn0.UlgwXGAPEps0mYXOcrmXFYsoLejaNl9QyG2G3y5JmQI"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "https://localhost:7012/WeatherForecast/Get"
+			},
+			"response": []
+		}
+	]
+}

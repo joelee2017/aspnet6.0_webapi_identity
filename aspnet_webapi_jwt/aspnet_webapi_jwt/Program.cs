@@ -1,4 +1,4 @@
-using aspnet_webapi_jwt.Authorization;
+using aspnet_webapi_jwt.Extension;
 using aspnet_webapi_jwt.Filter;
 using aspnet_webapi_jwt.Helper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
 
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers(x => x.Filters.Add<AuthorizeAttribute>());
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 #region Swagger

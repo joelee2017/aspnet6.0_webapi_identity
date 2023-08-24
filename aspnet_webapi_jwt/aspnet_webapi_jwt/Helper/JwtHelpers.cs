@@ -32,7 +32,7 @@ namespace aspnet_webapi_jwt.Helper
             var token = JwtBuilder.Create()
                         //所採用的雜湊演算法
                         .WithAlgorithm(new HMACSHA256Algorithm()) // symmetric
-                        //加密key
+                                                                  //加密key
                         .WithSecret(signKey)
                         //角色
                         .AddClaim("roles", "admin")
@@ -43,7 +43,7 @@ namespace aspnet_webapi_jwt.Helper
                         .AddClaim("iss", issuer)
                         //使用對象名稱
                         .AddClaim("sub", userName) // User.Identity.Name
-                        //過期時間
+                                                   //過期時間
                         .AddClaim("exp", DateTimeOffset.UtcNow.AddMinutes(expireMinutes).ToUnixTimeSeconds())
                         //此時間以前是不可以使用
                         .AddClaim("nbf", DateTimeOffset.UtcNow.ToUnixTimeSeconds())
@@ -85,18 +85,22 @@ namespace aspnet_webapi_jwt.Helper
             user.Roles = new List<string>();
 
             //對應 WeatherForecastController > Login 
-            if (!string.IsNullOrEmpty(tokenModel.Name)) 
+            if (!string.IsNullOrEmpty(tokenModel.Name))
             {
                 user.UserName = tokenModel.Name;
-                user.Roles = tokenModel.Roles;
             }
+
+            if (tokenModel.Roles != null)
+                user.Roles = tokenModel.Roles;
 
             //對應 WeatherForecastController > Login2 
             if (!string.IsNullOrEmpty(tokenModel.sub))
             {
-                user.UserName = tokenModel.Name;
-                user.Roles.Add(tokenModel.roles);
+                user.UserName = tokenModel.Name;               
             }
+
+            if(!string.IsNullOrEmpty(tokenModel.roles))
+                user.Roles.Add(tokenModel.roles);
 
 
             return user;
