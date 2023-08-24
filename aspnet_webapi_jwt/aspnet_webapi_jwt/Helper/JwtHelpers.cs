@@ -32,25 +32,25 @@ namespace aspnet_webapi_jwt.Helper
             var token = JwtBuilder.Create()
                         //所採用的雜湊演算法
                         .WithAlgorithm(new HMACSHA256Algorithm()) // symmetric
-                                                                  //加密key
+                        //加密key
                         .WithSecret(signKey)
                         //角色
-                        .AddClaim("roles", "admin")
+                        .AddClaim(ClaimTypes.Role, "admin")
                         //.AddClaim(ClaimTypes.Role, new List<string>() { "admin" })
+                        //使用者全名
+                        .AddClaim(ClaimTypes.Name, userName)
                         //JWT ID
                         .AddClaim("jti", Guid.NewGuid().ToString())
                         //發行人
                         .AddClaim("iss", issuer)
                         //使用對象名稱
                         .AddClaim("sub", userName) // User.Identity.Name
-                                                   //過期時間
+                        //過期時間
                         .AddClaim("exp", DateTimeOffset.UtcNow.AddMinutes(expireMinutes).ToUnixTimeSeconds())
                         //此時間以前是不可以使用
                         .AddClaim("nbf", DateTimeOffset.UtcNow.ToUnixTimeSeconds())
                         //發行時間
-                        .AddClaim("iat", DateTimeOffset.UtcNow.ToUnixTimeSeconds())
-                        //使用者全名
-                        .AddClaim(ClaimTypes.Name, userName)
+                        .AddClaim("iat", DateTimeOffset.UtcNow.ToUnixTimeSeconds())                      
                         //進行編碼
                         .Encode();
             return token;

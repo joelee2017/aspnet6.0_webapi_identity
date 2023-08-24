@@ -6,13 +6,15 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Reflection;
+using System.Security.Claims;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
 
 // Add services to the container.
-builder.Services.AddControllers(x => x.Filters.Add<AuthorizeAttribute>());
+//builder.Services.AddControllers(x => x.Filters.Add<AuthorizeAttribute>());
+builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 #region Swagger
@@ -55,12 +57,9 @@ builder.Services.AddAuthentication(options =>
     options.TokenValidationParameters = new TokenValidationParameters()
     {
         // 透過這項宣告，就可以從 "sub" 取值並設定給 User.Identity.Name
-        NameClaimType = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
+        NameClaimType = ClaimTypes.Name,
         // 透過這項宣告，就可以從 "roles" 取值，並可讓 [Authorize] 判斷角色
-        //對應 WeatherForecastController > Login2 
-        RoleClaimType = "roles",
-        //對應 WeatherForecastController > Login 
-        //RoleClaimType = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role",
+        RoleClaimType = ClaimTypes.Role,
         // 預設會認證發行人
         ValidateIssuer = true,
         // 不認證使用者

@@ -1,9 +1,12 @@
 ﻿using Newtonsoft.Json;
+using System.Security.Claims;
 
 namespace aspnet_webapi_jwt.Model
 {
     public class JwtTokenModel
-    {      
+    {
+        //對應 WeatherForecastController > Login2 
+        //[JsonProperty(ClaimTypes.Role)]
         public string roles { get; set; }
         public string jti { get; set; }
         public string iss { get; set; }
@@ -12,10 +15,11 @@ namespace aspnet_webapi_jwt.Model
         public long nbf { get; set; }
         public long iat { get; set; }
 
-        [JsonProperty("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name")]
+        [JsonProperty(ClaimTypes.Name)]
         public string Name { get; set; }
 
-        [JsonProperty("http://schemas.microsoft.com/ws/2008/06/identity/claims/role")]
+        // 對應 WeatherForecastController > Login 
+        [JsonProperty(ClaimTypes.Role)]
         public List<string> Roles { get; set; }
     }
 }
